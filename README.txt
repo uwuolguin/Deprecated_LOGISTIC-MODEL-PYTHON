@@ -118,7 +118,7 @@ Script Explanation:
 	-In line 6 we put our postgresql credentials to access the DB.
 	-Between lines 7 and 15 we fetch all the data from the table supplier_retailer and the location data from the table crossdock.
 	-In line 22 we leave fixed the value that the capacity of the trucks will have.
-	-In line 24 we create a variable that cointains the value of positive infinite, but that later will contain the lowest cost of transportation ( Any 		 cost is lower than positive infinte, so the first iteration will always have a lower cost of transportation, so the algorithm can start).
+	-In line 24 we create a variable that cointains the value of positive infinite, but that later will contain the lowest cost of transportation.
 	-In line 25 we set the numbers of iterations that the algorithm its going to do.
 	-In line 26 we set the temperature of the simulated annealing algorirthm.
 	-In line 27 we set the decreasing parameter of the temperature.
@@ -132,9 +132,9 @@ Script Explanation:
 			-a value that can be 1 or 0, if it is 0 this means that between the supplier S and the retailer R cross-dock facilities will be used, 1 				 means the opposite.
 			-the cost of transportation from supplier S to retailer R.
 			-the amount of merchandise to be transported from supplier S to retailer R.
-			-the word "DIRECTO" if between the supplier S and the retailer R cross-dock facilities will not be used, otherwise, the foreign key of the 			 cross-dock facility that will be used.
-			-The transportation cost from supplier S to crossdock C, this value is going to be 0 if a crossdock facility its not going to be used.
-			-The transportation cost from crossdock C to retailer R, this value is going to be 0 if a crossdock facility its not going to be used.
+			-the word "DIRECTO" if between the supplier S and the retailer R cross-dock facilities will not be used, otherwise, the foreign key of the 			 cross-dock facility that will be used. (This value is added later in the algorithm, it is not at its beginning.)
+			-The transportation cost from supplier S to crossdock C, this value is going to be 0 if a crossdock facility its not going to be 		 			 used.(This value is added later in the algorithm, it is not at its beginning.)
+			-The transportation cost from crossdock C to retailer R, this value is going to be 0 if a crossdock facility its not going to be 					 used.(This value is added later in the algorithm, it is not at its beginning.)
 
 	-In line 29 we create a dictionary that will contain the total load that its going to go from supplier S to cross-dock C and the cost by truck from 		 supplier S to cross-dock C. the structure of this dictionary is as follows:
 
@@ -161,7 +161,7 @@ Script Explanation:
 			-the amount of merchandise to be transported from supplier S to retailer R 
 			-the cost of transportation from supplier S to retailer R. 
 
-************** NOTE: THE DICTIONARIES IN LINES 28 TO 31 ARE GOING TO SAVE THE COMBINATION OF CHOICES WITH THE BEST PERFORMANCE ********************
+************** NOTE: THE DICTIONARIES FROM LINES 28 TO 31 ARE GOING TO SAVE THE COMBINATION OF OPTIONS WITH THE BEST PERFORMANCE ********************
 
 
 	-Between lines 34 and 36, we create an initial solution for the assignment of loads that will give us the lowest transportation cost, THIS DICTIONARY 	 IS NOT GOING TO BE ALWAYS THE ONE WITH THE BEST PERFORMANCE, THIS ONE WE ARE GOING TO USE IT TO ITERATE.
@@ -174,7 +174,7 @@ Script Explanation:
 
 	-In line 55 we iterate over the dictionary created in lines 34 and 36.
 
-	-Between line 57 and 88, if the combination supplier-retailer was assigned a crossdock facility, we append the foreign key of the crossdock to the 	 	 list,  then we go to the sql database and retrieve the cost of transportation from the supplier to the crossdock and the  cost of transportation from 	 the crossdock to the retailer (we append these last two values to the list).
+	-Between lines 57 and 88, if the combination supplier-retailer was assigned a crossdock facility, we append the foreign key of the crossdock to the 	 	 list,  then we go to the sql database and retrieve the cost of transportation from the supplier to the crossdock and the  cost of transportation from 	 the crossdock to the retailer (we append these last two values to the list).
 
 	-In line 90 we create a key to add infomation to the dictionary with the total load and cost of tranportation from supplier S to crossdock C.
 
@@ -187,9 +187,9 @@ Script Explanation:
 
 	-In line 126 we create a variable to save the total cost of the combinations between suppliers,retailers and cross-dock facilities.
 	
-	-Between lines 128 to 138, we transform the loads into amount of trucks that we are going to use for each option.
+	-Between lines 128 and 138, we transform the loads into amount of trucks that we are going to use for each option.
 
-	-Between lines 141 to 155, we iterate over the three dictionaries with trucks and cost information to calculate the total cost of the proposed  	 	 solution.
+	-Between lines 141 and 155, we iterate over the three dictionaries with truck and cost information to calculate the total cost of the proposed  	 	 solution.
 
 	-Between lines 161 and 168, if the proposed solution is better than the current best solution, we assign to the best performance dictionaries the 	 	 right information, and we keep the cross-dock assignment from the start to iterate again.	
 
