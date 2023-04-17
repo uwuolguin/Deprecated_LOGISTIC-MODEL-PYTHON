@@ -176,9 +176,9 @@ Script Explanation:
 
 	-Between line 57 and 88, if the combination supplier-retailer was assigned a crossdock facility, we append the foreign key of the crossdock to the 	 	 list,  then we go to the sql database and retrieve the cost of transportation from the supplier to the crossdock and the  cost of transportation from 	 the crossdock to the retailer (we append these last two values to the list).
 
-	-In line 90 we create a key to add infomation to the dictionary with the total load and cost of tranport from supplier S to crossdock C.
+	-In line 90 we create a key to add infomation to the dictionary with the total load and cost of tranportion from supplier S to crossdock C.
 
-	-In line 91 we create a key to add infomation to the dictionary with the total load and cost of tranport from crossdock C to supplier S.
+	-In line 91 we create a key to add infomation to the dictionary with the total load and cost of tranportion from crossdock C to supplier S.
 	
 	-If any of the keys in line 90 or 91 alredy exists, then we increase the amount of merchandise that its going to be transported, else, we create a new 	 list with the cost and load information.
 
