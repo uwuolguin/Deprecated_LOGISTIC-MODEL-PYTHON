@@ -118,7 +118,7 @@ Script Explanation:
 	-In line 6 we put our postgresql credentials to access the DB.
 	-Between lines 7 and 15 we fetch all the data from the table supplier_retailer and the location data from the table crossdock.
 	-In line 22 we leave fixed the value that the capacity of the trucks will have.
-	-In line 24 we create a variable that cointains the value of positive infinite, but that later will contain the lower cost of transportation ( Any 		 cost is lower than positive infinte, so the first iteration will always have a lower cost of transportation, so the algorithm can start).
+	-In line 24 we create a variable that cointains the value of positive infinite, but that later will contain the lowest cost of transportation ( Any 		 cost is lower than positive infinte, so the first iteration will always have a lower cost of transportation, so the algorithm can start).
 	-In line 25 we set the numbers of iterations that the algorithm its going to do.
 	-In line 26 we set the temperature of the simulated annealing algorirthm.
 	-In line 27 we set the decreasing parameter of the temperature.
@@ -150,7 +150,7 @@ Script Explanation:
 		-Key= its going to be a string, the foreign key of of the crossdock and the foreign key of the retailer.
 		-Value= its going to be a list that will contain:
 
-			-the amount of merchandise to be transported cross-dock C to retailer R.
+			-the amount of merchandise to be transported from cross-dock C to retailer R.
 			-the cost of transportation from cross-dock C to retailer R.
 
 	-In line 31 we create a dictionary that will contain the total load that its going to go from supplier S to retailer R and the cost by truck from 		 from supplier S to retailer R. the structure of this dictionary is as follows:
@@ -159,7 +159,7 @@ Script Explanation:
 		-Value= its going to be a list that will contain:
 
 			-the amount of merchandise to be transported from supplier S to retailer R 
-			-the cost of transportation from cross-dock from supplier S to retailer R. 
+			-the cost of transportation from supplier S to retailer R. 
 
 ************** NOTE: THE DICTIONARIES IN LINES 28 TO 31 ARE GOING TO SAVE THE COMBINATION OF CHOICES WITH THE BEST PERFORMANCE ********************
 
@@ -168,7 +168,7 @@ Script Explanation:
 	
 	-In line 39 we initialize the simulated annealing algorithm.
 
-	-Like in lines 34 to 36, we are going to replicate the dictionaries from lines 29 to 31, but they are not going to necessarily represent the solution   	 with the best performance, this dictionaries, the ones in lines 43 to 45,ARE GOING TO BE USE TO ITERATE.
+	-Like in lines 34 to 36, we are going to replicate the dictionaries from lines 29 to 31, but they are not going to necessarily represent the solution   	 with the best performance, this dictionaries, the ones in lines 43 to 45,ARE GOING TO BE USED TO ITERATE.
 
 	-In lines 49 to 51, we create a list to save the cross-dock foreign keys.
 
@@ -180,12 +180,12 @@ Script Explanation:
 
 	-In line 91 we create a key to add infomation to the dictionary with the total load and cost of tranport from crossdock C to supplier S.
 	
-	-If any of the keys in line 90 or 91 alredy exists, the we increase the amount of merchandise that its going to be transported, else, we create a new 	 list with the cost and load information.
+	-If any of the keys in line 90 or 91 alredy exists, then we increase the amount of merchandise that its going to be transported, else, we create a new 	 list with the cost and load information.
 
 
 	-If crossdock is not assigned to a key supplier-retailer, then between lines 116 and 124, we just update the dictionary with the load and cost between 	 suppliers and retailers.
 
-	-In line 126 we create a variable to save the total amount of the combinations between suppliers,retailers and cross-dock facilities.
+	-In line 126 we create a variable to save the total cost of the combinations between suppliers,retailers and cross-dock facilities.
 	
 	-Between lines 128 to 138, we transform the loads into amount of trucks that we are going to use for each option.
 
@@ -194,12 +194,9 @@ Script Explanation:
 	-Between lines 161 and 168, if the proposed solution is better than the current best solution, we assign to the best performance dictionaries the 	 	 right information, and we keep the cross-dock assignment from the start to iterate again.	
 
 
-	-Between lines 161 and 168, if the proposed solution is better than the current best solution, we assign to the best performance dictionaries the 	 	 right information, and we keep the cross-dock assignment from the start to iterate again.
-
 	-Between lines 170 and 178, if the proposed solution is worse than the current best solution, we will change the cross-dock assignment from the start, 	 unless the simulated annealing algorithm condition mantains the start solution.
 	
 	-Between lines 180 and 200, the script creates a operations plan with all the important details of the best solution.
-
 
 
 Note: The script is written in Python, a very slow language, to use this repository in a standard complex situation, please translate the script to C, C++, or any other language with high performance.
